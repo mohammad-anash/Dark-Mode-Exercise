@@ -1,14 +1,19 @@
-function toggleNewTheme() {
-  const doc = document.documentElement;
-  const currentTheme = doc.getAttribute("data-theme");
-  const newTheme = currentTheme === "Dark" ? "light" : "Dark";
-  doc.setAttribute("data-theme", newTheme);
+const text = document.getElementById("time");
+const [s, l] = ["75%", "75%"];
 
-  if (newTheme === "Dark") {
-    document.body.style.backgroundColor = "black";
-  } else {
-    document.body.style.backgroundColor = "grey";
-  }
-}
-const toggle = document.getElementById("toggle");
-toggle.addEventListener("change", toggleNewTheme);
+const updateTime = () => {
+  const leftOffSet = Math.random() * 100;
+  const h = Math.random() * 360;
+  const currentTime = new Date();
+  const timeString = currentTime.toLocaleTimeString();
+  text.innerText = timeString;
+  text.setAttribute(
+    "style",
+    `color: hsl(${h} ${s}, ${l}); top: ${
+      Math.random() * 100
+    }%; left: ${leftOffSet}%`
+  );
+};
+
+updateTime();
+setInterval(updateTime, 3000);
